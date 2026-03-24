@@ -1,0 +1,70 @@
+<style>
+.theme-toggle {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+.theme-toggle:hover {
+  background: var(--background-modifier-hover);
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-normal);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: none; }
+body.theme-dark .theme-toggle .icon-sun { display: block; }
+body.theme-light .theme-toggle .icon-moon { display: block; }
+</style>
+
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+  <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<script>
+(function() {
+  var toggle = document.getElementById('theme-toggle');
+  var body = document.body;
+
+  function getTheme() {
+    return localStorage.getItem('dg-theme') ||
+      (body.classList.contains('theme-dark') ? 'dark' : 'light');
+  }
+
+  function setTheme(theme) {
+    body.classList.remove('theme-dark', 'theme-light');
+    body.classList.add('theme-' + theme);
+    localStorage.setItem('dg-theme', theme);
+  }
+
+  // Apply saved preference on load
+  var saved = localStorage.getItem('dg-theme');
+  if (saved) {
+    setTheme(saved);
+  }
+
+  toggle.addEventListener('click', function() {
+    var current = getTheme();
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
