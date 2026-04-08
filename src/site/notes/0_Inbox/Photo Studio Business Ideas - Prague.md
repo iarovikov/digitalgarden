@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/0-inbox/photo-studio-business-ideas-prague/","tags":["generated","business","photo-studio","prague","research"],"dg-note-properties":{"generated_by":"claude","generated_date":"2026-04-04","tags":["generated","business","photo-studio","prague","research"]}}
+{"dg-publish":true,"permalink":"/0-inbox/photo-studio-business-ideas-prague/","tags":["generated","business","photo-studio","prague","research"]}
 ---
 
 
